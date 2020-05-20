@@ -1,5 +1,5 @@
-import * as authActions from './actions';
-import * as authSelectors from './selectors';
+import * as authActions from './actions.js';
+import * as authSelectors from './selectors.js';
 
 export {
   authActions,

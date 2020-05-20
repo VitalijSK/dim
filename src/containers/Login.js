@@ -1,5 +1,5 @@
 import React from 'react';
-import { Auth } from '../services/index';
+import { Auth } from '../services';
 
 export class Login extends React.Component {
   static contextTypes = {

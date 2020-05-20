@@ -1,5 +1,5 @@
 import { keyBy } from 'lodash';
-import * as actionTypes from './actionTypes';
+import * as actionTypes from './actionTypes.js';
 
 export function fetchPost(payload) {
   return {type: actionTypes.FETCH_ONE, payload};

@@ -1,7 +1,7 @@
 import { keyBy } from 'lodash';
 import axios from 'axios';
 import querystring from 'querystring';
-import * as actionTypes from './actionTypes';
+import * as actionTypes from './actionTypes.js';
 
 export function getCategory(id) {
   return function (dispatch) {

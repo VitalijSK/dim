@@ -1,5 +1,5 @@
 import Immutable from 'seamless-immutable';
-import * as actionTypes from './actionTypes';
+import * as actionTypes from './actionTypes.js';
 
 const initialState = Immutable({
   byId: {}

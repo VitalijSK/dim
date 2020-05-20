@@ -24,6 +24,24 @@ export const Auth = {
         });
       });
   },
+  regist({email, password, values}) {
+      console.log('regist', {email, password, values})
+    return axios.post(`http://localhost:8081/reg`, {email, password, values})
+      .then((res) => {
+            if (!res) {
+                return res
+            }
+            let {token, user, data} = res.data;
+             console.log('finish-regist', user, data)
+            localStorage.setItem('profile', JSON.stringify(user));
+            localStorage.setItem('token', token);
+            axios.interceptors.request.use((config) => {
+              config.headers['authorization'] = `Bearer ${token}`;
+              return config;
+            });
+        return data;
+      });
+  },
   logout() {
     localStorage.removeItem('profile');
     localStorage.removeItem('token');

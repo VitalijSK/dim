@@ -1,5 +1,5 @@
-import * as postsActions from './actionCreators';
-import * as postsSelectors from './selectors';
+import * as postsActions from './actionCreators.js';
+import * as postsSelectors from './selectors.js';
 
 export {
   postsActions,

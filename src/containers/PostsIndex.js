@@ -2,9 +2,9 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
 import { Link } from 'react-router';
-import { PostsList } from '../components/posts/PostsList';
-import { SearchInput } from '../components/shared/SearchInput';
-import { postsActions, postsSelectors } from '../store/posts/index';
+import { PostsList } from '../components/posts/PostsList.js';
+import { SearchInput } from '../components/shared/SearchInput.js';
+import { postsActions, postsSelectors } from '../store/posts';
 
 @connect(
   (state) => {

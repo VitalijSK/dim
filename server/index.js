@@ -7,6 +7,14 @@ var jwt = require('jsonwebtoken');
 var expressJwt = require('express-jwt');
 var validate = require('express-validation');
 var validations = require('./validations');
+const dbData = {
+  'asda@mail.ry':  [
+  {
+    title: '',
+    price: '2000$'
+  }
+]
+};
 
 var jwtSecret = 'JWT_SECRET';
 
@@ -20,10 +28,31 @@ var app = jsonServer.create();
 app.use(cors());
 app.use(bodyParser.json());
 // app.use(expressJwt({secret: jwtSecret}).unless({path: ['/login']}));
-
+app.use('/assets', express.static(__dirname + '/public/assets'));
 app.post('/login', authenticate, function (req, res) {
   var token = jwt.sign({email: user.email}, jwtSecret);
   res.send({token: token, user: user});
+});
+
+app.post('/reg', reg, function (req, res) {
+  var body = req.body;
+  console.log(req);
+  var token = jwt.sign({email: body.email}, jwtSecret);
+  var deff = [
+    {
+      title: '',
+      price: '2000$'
+    }
+  ];
+  dbData[body.email] = deff;
+  res.send({
+    token: token,
+    user: {
+      email: body.email,
+      password: body.password
+    },
+    data: deff
+  });
 });
 
 app.post('/categories', validate(validations.category), function(req, res, next){
@@ -46,6 +75,11 @@ app.get('/me', function (req, res) {
   res.send(req.user);
 });
 
+app.get('/events', function (req, res) {
+  console.log('req.user', req.user)
+  res.send(req.user && dbData[req.user.email]);
+});
+
 app.use(jsonServer.router(db));
 app.use(jsonServer.defaults());
 
@@ -58,6 +92,16 @@ function authenticate(req, res, next) {
     res.status(400).end('Must provide email and password');
   } else if (body.email !== user.email || body.password !== user.password) {
     res.status(401).end('Email or password incorrect');
+  } else {
+    next();
+  }
+}
+
+function reg(req, res, next) {
+  var body = req.body;
+  console.log(body)
+  if (!body.email || !body.password) {
+    res.status(400).end('Must provide email and password');
   } else {
     next();
   }

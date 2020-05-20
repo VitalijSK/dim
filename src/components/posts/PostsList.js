@@ -1,5 +1,5 @@
 import React from 'react';
-import { PostsListRow } from './PostsListRow';
+import { PostsListRow } from './PostsListRow.js';
 
 export const PostsList = ({posts, onDelete}) => {
   return (

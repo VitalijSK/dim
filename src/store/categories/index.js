@@ -1,5 +1,5 @@
-import * as categoriesActions from './actions';
-import * as categoriesSelectors from './selectors';
+import * as categoriesActions from './actions.js';
+import * as categoriesSelectors from './selectors.js';
 
 export {
   categoriesActions,

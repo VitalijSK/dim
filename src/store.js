@@ -4,8 +4,8 @@ import { hashHistory } from 'react-router';
 import { routerMiddleware } from 'react-router-redux';
 import createLogger from 'redux-logger';
 import thunk from 'redux-thunk';
-import rootReducer from './store/reducers';
-import rootEpic from './store/epics';
+import rootReducer from './store/reducers.js';
+import rootEpic from './store/epics.js';
 
 const logger = createLogger({collapsed: true});
 

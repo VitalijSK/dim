@@ -4,8 +4,8 @@ import querystring from 'querystring';
 import { Observable } from 'rxjs/Observable';
 import { push } from 'react-router-redux';
 
-import * as actionTypes from './actionTypes';
-import * as postsActions from './actionCreators';
+import * as actionTypes from './actionTypes.js';
+import * as postsActions from './actionCreators.js';
 
 export function fetchPost(action$) {
   return action$.ofType(actionTypes.FETCH_ONE)

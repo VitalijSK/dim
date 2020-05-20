@@ -1,6 +1,6 @@
 import React from 'react';
 import Textarea from 'react-textarea-autosize';
-import { postsActions, postsSelectors } from '../store/posts/index';
+import { postsActions, postsSelectors } from '../store/posts';
 import { connect } from 'react-redux';
 import { isEqual } from 'lodash';
 
@@ -8,7 +8,7 @@ import { isEqual } from 'lodash';
   (state, props) => {
     return {
       post: postsSelectors.getPost(state, props.params.postId),
-    };
+    }
   }
 )
 export class PostsEdit extends React.Component {

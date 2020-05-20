@@ -4,14 +4,15 @@ import { IndexLinkContainer, LinkContainer } from 'react-router-bootstrap';
 import { Route, IndexRoute, Router, hashHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import { Provider } from 'react-redux';
-import store from './store';
-import { Auth } from './services/Auth';
+import store from './store.js';
+import { Auth } from './services/Auth.js';
 import {
   Login,
   Dashboard,
   PostsIndex,
   PostsEdit,
-} from './containers/index';
+  EventsIndex
+} from './containers';
 
 require('./app.scss');
 
@@ -28,6 +29,9 @@ let App = ({children}) => {
           <LinkContainer to="/posts">
             <NavItem>Posts</NavItem>
           </LinkContainer>
+          <LinkContainer to="/events">
+            <NavItem>Events</NavItem>
+          </LinkContainer>
         </Nav>
         {Auth.authenticated() && <Nav className="pull-right">
           <NavItem onClick={Auth.logout.bind(this)}>Logout</NavItem>
@@ -38,7 +42,7 @@ let App = ({children}) => {
           </LinkContainer>
         </Nav>}
       </Navbar>
-      <div className="container">
+      <div className={'main'}>
         {children}
       </div>
     </div>
@@ -52,6 +56,7 @@ export default () => {
         <Route path="/login" component={Login} />
         <Route path="/" component={App}>
           <IndexRoute component={Dashboard} />
+          <Route path="/events" component={EventsIndex} />
           <Route path="/posts" component={PostsIndex} />
           <Route path="/posts/new" component={PostsEdit} />
           <Route path="/posts/:postId" component={PostsEdit} />
