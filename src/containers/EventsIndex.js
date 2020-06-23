@@ -20,6 +20,8 @@ export class EventsIndex extends React.Component {
 
   constructor(props, context) {
     super(props, context);
+
+    this.onSet = this._onSet.bind(this);
   }
 
   componentDidMount() {
@@ -29,8 +31,9 @@ export class EventsIndex extends React.Component {
   fetchEvents() {
     this.context.store.dispatch(calcRegActions.fetchEvents());
   }
-  onSet (event) {
+  _onSet (event) {
     console.log('event', event)
+    this.context.store.dispatch(calcRegActions.setEvents(event));
   }
 
   render() {

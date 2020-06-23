@@ -3,7 +3,7 @@ import * as actionTypes from './actionTypes.js';
 
 const initialState = Immutable({
   loading: false,
-  values: []
+  values: JSON.parse(localStorage.getItem('events') !== 'undefined' && localStorage.getItem('events')) || []
 });
 
 export default (state = initialState, action) => {

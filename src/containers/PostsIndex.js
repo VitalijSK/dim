@@ -52,15 +52,8 @@ export class PostsIndex extends React.Component {
     return (
       <div>
         <div className="row">
-          <div className="col-md-6">
-            <SearchInput
-              value={params.q}
-              onSearch={this.handleSearch}
-              placeholder="Title search ..."
-            />
-          </div>
-          <div className="col-md-6 text-right">
-            <Link to="/posts/new" className="btn btn-primary">New Post</Link>
+          <div className="col-md-12 text-center">
+            <Link to="/posts/new" className="btn btn-primary"> Новый заказ</Link>
           </div>
         </div>
         {posts.length > 0 &&

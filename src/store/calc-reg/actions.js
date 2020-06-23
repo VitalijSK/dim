@@ -5,6 +5,11 @@ export function regUser(payload) {
         type: actionTypes.REG_USER,
         payload
     };
+}export function setEvents(payload) {
+    return {
+        type: actionTypes.EVENT_SET,
+        payload
+    };
 }
 
 export function fetchEvents(payload) {

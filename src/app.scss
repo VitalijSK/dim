@@ -8,6 +8,32 @@ body {
 .main {
   margin-top: -20px;
 }
+.cardsAdmin {
+  display:flex;
+  min-height: auto!important;
+  justify-content: space-around;
+}
+.cardsAdmin img {
+  max-width: 100%;
+  height: 150px;
+
+}
+.pull-right a{
+  margin-bottom: 10px;
+}
+.cardsAdmin>div{
+  max-width: 20%;
+  padding: 5px 20px 5px 20px;
+  cursor: pointer;
+  display:flex;
+  flex-direction: column-reverse;
+  text-align: center;
+  height: min-content;
+}
+
+.cardsAdmin>div:hover {
+  background-color: #fbc6c6;
+}
 .events {
   display:grid;
   grid-row-gap: 20px;

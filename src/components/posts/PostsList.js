@@ -7,8 +7,8 @@ export const PostsList = ({posts, onDelete}) => {
       <thead>
       <tr>
         <th>Id</th>
-        <th>Title</th>
-        <th>Category</th>
+        <th>Название</th>
+        <th>Клиент</th>
         <th></th>
       </tr>
       </thead>

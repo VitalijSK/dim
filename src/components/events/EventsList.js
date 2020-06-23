@@ -7,7 +7,9 @@ export const EventsList = ({events, onSet}) => {
       <thead>
       <tr>
         <th>Id</th>
-        <th>Title</th>
+        <th>Название</th>
+        <th>План</th>
+        <th>Цена</th>
         <th></th>
       </tr>
       </thead>

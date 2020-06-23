@@ -11,6 +11,8 @@ import {
   Dashboard,
   PostsIndex,
   PostsEdit,
+  QuestionsIndex,
+  QuestionsEdit,
   EventsIndex
 } from './containers';
 
@@ -28,6 +30,9 @@ let App = ({children}) => {
           </IndexLinkContainer>
           <LinkContainer to="/posts">
             <NavItem>Posts</NavItem>
+          </LinkContainer>
+          <LinkContainer to="/questions">
+            <NavItem>Questions</NavItem>
           </LinkContainer>
           <LinkContainer to="/events">
             <NavItem>Events</NavItem>
@@ -60,6 +65,9 @@ export default () => {
           <Route path="/posts" component={PostsIndex} />
           <Route path="/posts/new" component={PostsEdit} />
           <Route path="/posts/:postId" component={PostsEdit} />
+          <Route path="/questions" component={QuestionsIndex} />
+          <Route path="/questions/new" component={QuestionsEdit} />
+          <Route path="/questions/:questionId" component={QuestionsEdit} />
         </Route>
       </Router>
     </Provider>

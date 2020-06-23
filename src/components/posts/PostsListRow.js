@@ -6,7 +6,7 @@ export const PostsListRow = ({post, onDelete}) => {
     <tr key={post.id}>
       <td>{post.id}</td>
       <td>{post.title}</td>
-      <td>{post.category_id}</td>
+      <td>{post.body}</td>
       <td>
         <div className="btn-toolbar pull-right">
           <Link to={`/posts/${post.id}`} className="btn btn-primary">Edit</Link>

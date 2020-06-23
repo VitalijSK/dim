@@ -1,5 +1,8 @@
 import React from "react";
 import {Button, ControlLabel, FormGroup, FormControl, ProgressBar, Thumbnail} from 'react-bootstrap';
+import {questionsActions, questionsSelectors} from "../store/questions";
+import {connect} from "react-redux";
+import {calcRegActions} from "../store/calc-reg";
 
 const CalcStart = ({handleNext}) => {
     return (
@@ -58,147 +61,21 @@ const CalcStep = ({title, cards, now, all, checkValue, handleBack, handleNext}) 
                     </Button>
                 }
                 <Button onClick={handleNext} className="start-page__button button is-primary is-blicked has-light-shadow">
-                    { now !== questions.length && 'Далее' || 'Завершить'}
+                    { now !== all && 'Далее' || 'Завершить'}
                 </Button>
             </div>
         </div>
     );
 };
 
-const questionss = [];
-const questions = [
-    {
-        title: 'Когда Вы планируете провести свадьбу?',
-        cards: [
-            {
-                title: 'Зима',
-                src: '../assets/img/step-1-1.jpg'
-            },
-            {
-                title: 'Весна',
-                src: '../assets/img/step-1-2.jpg'
-            },
-            {
-                title: 'Лето',
-                src: '../assets/img/step-1-3.jpg'
-            },
-            {
-                title: 'Осень',
-                src: '../assets/img/step-1-4.jpg'
-            }
-        ]
+@connect(
+    (state) => {
+        return {
+            questions: questionsSelectors.getQuestions(state),
+        }
     },
-    {
-        title: 'Где Вы хотите провести свадьбу?',
-        cards: [
-            {
-                title: 'Гомель',
-                src: '../assets/img/step-2-1.jpg'
-            },
-            {
-                title: 'Гомельская область',
-                src: '../assets/img/step-2-2.jpg'
-            },
-            {
-                title: 'За границей',
-                src: '../assets/img/step-2-3.jpg'
-            },
-            {
-                title: 'Не определились',
-                src: '../assets/img/step-no.jpg'
-            }
-        ]
-    },
-    {
-        title: 'Куда пригласим гостей?',
-        cards: [
-            {
-                title: 'Ресторан',
-                src: '../assets/img/step-3-1.jpg'
-            },
-            {
-                title: 'Шатер',
-                src: '../assets/img/step-3-2.jpg'
-            },
-            {
-                title: 'Веренда',
-                src: '../assets/img/step-3-3.jpg'
-            },
-            {
-                title: 'Лофит',
-                src: '../assets/img/step-3-4.jpg'
-            },
-            {
-                title: 'Не определились',
-                src: '../assets/img/step-no.jpg'
-            }
-        ]
-    },
-    {
-        title: 'В Какой бюджет планируете уложиться?',
-        cards: [
-            {
-                title: 'до 5 тыс $',
-                src: '../assets/img/step-4-1.jpg'
-            },
-            {
-                title: 'до 10 тыс $',
-                src: '../assets/img/step-4-2.jpeg'
-            },
-            {
-                title: 'до 15 тыс $',
-                src: '../assets/img/step-4-3.jpg'
-            },
-            {
-                title: 'до 25 тыс $',
-                src: '../assets/img/step-4-4.jpg'
-            },
-            {
-                title: 'до 35 тыс $',
-                src: '../assets/img/step-4-5.jpg'
-            }
-        ]
-    },
-    {
-        title: 'Сколько гостей разделят с Вами день свадьбы?',
-        cards: [
-            {
-                title: 'до 40 гостей',
-                src: '../assets/img/step-5-1.webp'
-            },
-            {
-                title: 'от 40 до 70 гостей',
-                src: '../assets/img/step-5-2.webp'
-            },
-            {
-                title: 'от 70 до 100 гостей',
-                src: '../assets/img/step-5-3.jpg'
-            },
-            {
-                title: 'Более 100 гостей',
-                src: '../assets/img/step-5-4.webp'
-            }
-        ]
-    },
-    {
-        title: 'Какая регистрация?',
-        cards: [
-            {
-                title: 'Выездная',
-                src: '../assets/img/step-6-1.jpg'
-            },
-            {
-                title: 'ЗАГС',
-                src: '../assets/img/step-6-2.jpg'
-            },
-            {
-                title: 'Площадки Гомеля',
-                src: '../assets/img/step-6-3.jpg'
-            }
-        ]
-    }
-];
-
+    { fetchQuestions: questionsActions.fetchQuestions },
+)
 
 class WrapperCalc extends React.Component {
     constructor (props) {
@@ -215,6 +92,9 @@ class WrapperCalc extends React.Component {
     }
     handleNext = () => {
         this.setState({current: this.state.current + 1});
+    }
+    componentDidMount() {
+        this.props.fetchQuestions();
     }
     sendAuth = (e) => {
         e.preventDefault();
@@ -237,6 +117,10 @@ class WrapperCalc extends React.Component {
     }
 
     render () {
+        const {
+            questions,
+        } = this.props;
+
         if (this.state.current === -1) {
             return <CalcStart
                     handleNext={this.handleNext}
